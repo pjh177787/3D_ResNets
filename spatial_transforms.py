@@ -43,7 +43,7 @@ class Resize(transforms.Resize):
         pass
 
 
-class Scale(transforms.Scale):
+class Scale(transforms.Resize):
 
     def randomize_parameters(self):
         pass
@@ -134,7 +134,7 @@ class MultiScaleCornerCrop(object):
                  size,
                  scales,
                  crop_positions=['c', 'tl', 'tr', 'bl', 'br'],
-                 interpolation=Image.BILINEAR):
+                 interpolation=transforms.InterpolationMode.BICUBIC):
         self.size = size
         self.scales = scales
         self.interpolation = interpolation
@@ -169,7 +169,7 @@ class RandomResizedCrop(transforms.RandomResizedCrop):
                  size,
                  scale=(0.08, 1.0),
                  ratio=(3. / 4., 4. / 3.),
-                 interpolation=Image.BILINEAR):
+                 interpolation=transforms.InterpolationMode.BICUBIC):
         super().__init__(size, scale, ratio, interpolation)
         self.randomize_parameters()
 
